@@ -1,11 +1,7 @@
 import * as React from 'react';
 
-function App() {
-  return (
-    <div>
-      
-    </div>
-  );
-}
+import 'devextreme/dist/css/dx.light.css';
+
+const App = (): JSX.Element => <div />;
 
 export default App;
