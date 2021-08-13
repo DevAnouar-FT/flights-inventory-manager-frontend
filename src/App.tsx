@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-import 'devextreme/dist/css/dx.light.css';
+import "@assets/css/app.scss";
 
 const App = (): JSX.Element => <div />;
 
