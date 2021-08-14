@@ -1,6 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@app/store";
 import type { DisplayableFlights } from "./components/FlightsList";
+import { FetchStatus } from "@app/types";
 
 export const selectAllFlights = createSelector<
   RootState,
@@ -18,4 +19,13 @@ export const selectAllFlights = createSelector<
         destination,
       })
     )
+);
+
+export const isFlightsListLoading = createSelector<
+  RootState,
+  RootState["flightsManager"]["fetchStatus"],
+  boolean
+>(
+  (rootState) => rootState.flightsManager.fetchStatus,
+  (fetchStatus): boolean => fetchStatus === FetchStatus.LOADING
 );

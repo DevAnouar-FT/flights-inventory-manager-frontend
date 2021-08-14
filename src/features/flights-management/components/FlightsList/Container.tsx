@@ -2,7 +2,10 @@ import * as React from "react";
 
 import Presentation from "./Presentation";
 import { useAppDispatch, useAppSelector } from "@app/hooks";
-import { selectAllFlights } from "@features/flights-management/selectors";
+import {
+  isFlightsListLoading,
+  selectAllFlights,
+} from "@features/flights-management/selectors";
 import { fetchAllFlights } from "@features/flights-management/slice";
 
 export type DisplayableFlights = React.ComponentProps<
@@ -10,6 +13,8 @@ export type DisplayableFlights = React.ComponentProps<
 >["flights"];
 
 export default (): JSX.Element => {
+  const flightsListIsLoading: boolean =
+    useAppSelector<boolean>(isFlightsListLoading);
   const flights: DisplayableFlights = useAppSelector<DisplayableFlights>(
     selectAllFlights,
     (previousFlights, currentFlights) => {
@@ -44,6 +49,10 @@ export default (): JSX.Element => {
   }, [selectedFlightId]);
 
   return (
-    <Presentation flights={flights} onFlightSelected={setSelectedFlightId} />
+    <Presentation
+      flights={flights}
+      flightsListIsLoading={flightsListIsLoading}
+      onFlightSelected={setSelectedFlightId}
+    />
   );
 };

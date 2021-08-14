@@ -5,5 +5,4 @@ export interface Flight {
   date: string;
   origin: string;
   destination: string;
-  contingents: string[];
 }
