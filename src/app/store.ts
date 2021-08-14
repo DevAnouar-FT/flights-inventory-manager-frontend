@@ -1,7 +1,11 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+
+import { flightsManagerReducer } from "@features/flights-management";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    flightsManager: flightsManagerReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;

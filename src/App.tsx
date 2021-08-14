@@ -1,7 +1,14 @@
 import * as React from "react";
 
+import FlightsListing from "@pages/FlightsListing";
+
 import "@assets/css/app.scss";
 
-const App = (): JSX.Element => <div />;
-
-export default App;
+export default (): JSX.Element => {
+  return (
+    <>
+      <header></header>
+      <FlightsListing />
+    </>
+  );
+};
