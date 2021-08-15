@@ -65,8 +65,21 @@
     ]
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx}": "eslint --cache --fix && npm test -- --coverage --watchAll=false",
     "*.{js,ts,tsx,scss,md}": "prettier --write"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/features/**/*.{ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "lines": 75,
+        "statements": 75,
+        "branches": 75,
+        "functions": 75
+      }
+    }
   },
   "proxy": "http://localhost:4000"
 }
