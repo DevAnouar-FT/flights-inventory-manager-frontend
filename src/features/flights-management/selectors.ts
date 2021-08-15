@@ -1,15 +1,15 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { RootState } from "@app/store";
-import type { DisplayableFlights } from "./components/FlightsList";
+import type { DisplayedFlights } from "./components/FlightsList";
 import { FetchStatus } from "@app/types";
 
 export const selectAllFlights = createSelector<
   RootState,
   RootState["flightsManager"]["flights"],
-  DisplayableFlights
+  DisplayedFlights
 >(
   (rootState) => rootState.flightsManager.flights,
-  (flights): DisplayableFlights =>
+  (flights): DisplayedFlights =>
     flights.map(
       ({ id, iataCarrierCode, number, date, origin, destination }) => ({
         id,

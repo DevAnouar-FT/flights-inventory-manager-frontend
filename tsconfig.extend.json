@@ -5,7 +5,8 @@
       "@app/*": ["./app/*"],
       "@assets/*": ["./assets/*"],
       "@features/*": ["./features/*"],
-      "@pages/*": ["./pages/*"]
+      "@pages/*": ["./pages/*"],
+      "@src/*": ["./*"]
     }
   }
 }

@@ -8,14 +8,14 @@ import {
 } from "@features/flights-management/selectors";
 import { fetchAllFlights } from "@features/flights-management/slice";
 
-export type DisplayableFlights = React.ComponentProps<
+export type DisplayedFlights = React.ComponentProps<
   typeof Presentation
 >["flights"];
 
 export default (): JSX.Element => {
   const flightsListIsLoading: boolean =
     useAppSelector<boolean>(isFlightsListLoading);
-  const flights: DisplayableFlights = useAppSelector<DisplayableFlights>(
+  const flights: DisplayedFlights = useAppSelector<DisplayedFlights>(
     selectAllFlights,
     (previousFlights, currentFlights) => {
       const previousFlightsIds: Record<string, boolean> =
