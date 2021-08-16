@@ -1,7 +1,7 @@
 import * as React from "react";
+import { Column } from "devextreme-react/data-grid";
 
-import DataGrid, { Column } from "devextreme-react/data-grid";
-import LoadPanel from "devextreme-react/load-panel";
+import DataGridWithLoadPanel from "@ui/DataGridWithLoadPanel";
 
 interface Flight {
   id: string;
@@ -22,27 +22,26 @@ export default ({
   onFlightSelected,
   flightsListIsLoading,
 }: Props): JSX.Element => {
-  const customizeIataCodeText = ({ value }: { value: string }) =>
+  const customizeIataCodeText = ({ value }: { value: string }): string =>
     value.toUpperCase();
 
   const handleSelectionChange: NonNullable<
-    React.ComponentProps<typeof DataGrid>["onSelectionChanged"]
+    React.ComponentProps<typeof DataGridWithLoadPanel>["onSelectionChanged"]
   > = ({ selectedRowsData }): void => {
     onFlightSelected((selectedRowsData[0] as Flight).id);
   };
 
-  const flightsDataGridId = "flightsDataGrid";
-
   return (
     <>
-      <DataGrid
-        id={flightsDataGridId}
+      <DataGridWithLoadPanel
+        id="flightsDataGrid"
         dataSource={flights}
         keyExpr="id"
         showBorders
         selection={{ mode: "single" }}
         onSelectionChanged={handleSelectionChange}
         noDataText={flightsListIsLoading ? "" : "Sorry, no flights available."}
+        dataIsLoading={flightsListIsLoading}
       >
         {[
           {
@@ -72,12 +71,7 @@ export default ({
             />
           )
         )}
-      </DataGrid>
-      <LoadPanel
-        visible={flightsListIsLoading}
-        position={{ of: `#${flightsDataGridId}` }}
-        shadingColor="rgba(0, 0, 0, 0.1)"
-      />
+      </DataGridWithLoadPanel>
     </>
   );
 };

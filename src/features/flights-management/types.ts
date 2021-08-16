@@ -6,3 +6,7 @@ export interface Flight {
   origin: string;
   destination: string;
 }
+
+export interface FlightDTO extends Flight {
+  contingents: string[];
+}

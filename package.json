@@ -65,7 +65,7 @@
     ]
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --cache --fix && npm test -- --coverage --watchAll=false",
+    "*.{js,ts,tsx}": "eslint --cache --fix",
     "*.{js,ts,tsx,scss,md}": "prettier --write"
   },
   "jest": {

@@ -7,6 +7,7 @@ import {
   selectAllFlights,
 } from "@features/flights-management/selectors";
 import { fetchAllFlights } from "@features/flights-management/slice";
+import { fetchContingentsByFlightId } from "@features/contingents-management";
 
 export type DisplayedFlights = React.ComponentProps<
   typeof Presentation
@@ -44,7 +45,7 @@ export default (): JSX.Element => {
 
   React.useEffect((): void => {
     if (selectedFlightId) {
-      console.log(selectedFlightId);
+      dispatch(fetchContingentsByFlightId(selectedFlightId));
     }
   }, [selectedFlightId]);
 
