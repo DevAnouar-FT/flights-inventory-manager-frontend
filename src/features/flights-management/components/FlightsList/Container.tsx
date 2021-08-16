@@ -3,6 +3,7 @@ import * as React from "react";
 import Presentation from "./Presentation";
 import { useAppDispatch, useAppSelector } from "@app/hooks";
 import {
+  hasFlightsListFetchingFailed,
   isFlightsListLoading,
   selectAllFlights,
 } from "@features/flights-management/selectors";
@@ -16,6 +17,10 @@ export type DisplayedFlights = React.ComponentProps<
 export default (): JSX.Element => {
   const flightsListIsLoading: boolean =
     useAppSelector<boolean>(isFlightsListLoading);
+  const flightsListFetchingHasFailed: boolean = useAppSelector<boolean>(
+    hasFlightsListFetchingFailed
+  );
+
   const flights: DisplayedFlights = useAppSelector<DisplayedFlights>(
     selectAllFlights,
     (previousFlights, currentFlights) => {
@@ -53,6 +58,7 @@ export default (): JSX.Element => {
     <Presentation
       flights={flights}
       flightsListIsLoading={flightsListIsLoading}
+      flightsListFetchingHasFailed={flightsListFetchingHasFailed}
       onFlightSelected={setSelectedFlightId}
     />
   );

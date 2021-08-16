@@ -21,3 +21,12 @@ export const isContingentsListLoading = createSelector<
   (rootState) => rootState.contingentsManager.fetchStatus,
   (fetchStatus): boolean => fetchStatus === FetchStatus.LOADING
 );
+
+export const hasContingentsListFetchingFailed = createSelector<
+  RootState,
+  RootState["contingentsManager"]["fetchStatus"],
+  boolean
+>(
+  (rootState) => rootState.contingentsManager.fetchStatus,
+  (fetchStatus): boolean => fetchStatus === FetchStatus.FAILED
+);

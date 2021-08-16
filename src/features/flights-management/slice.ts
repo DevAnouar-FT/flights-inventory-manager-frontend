@@ -34,6 +34,7 @@ const slice = createSlice({
       state.fetchStatus = FetchStatus.IDLE;
     });
     builder.addCase(fetchAllFlights.rejected, (state) => {
+      state.flights = [];
       state.fetchStatus = FetchStatus.FAILED;
     });
   },

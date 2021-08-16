@@ -15,12 +15,14 @@ interface Props {
   flights: Flight[];
   onFlightSelected(flightId: string): void;
   flightsListIsLoading: boolean;
+  flightsListFetchingHasFailed: boolean;
 }
 
 export default ({
   flights,
   onFlightSelected,
   flightsListIsLoading,
+  flightsListFetchingHasFailed,
 }: Props): JSX.Element => {
   const customizeIataCodeText = ({ value }: { value: string }): string =>
     value.toUpperCase();
@@ -31,6 +33,27 @@ export default ({
     onFlightSelected((selectedRowsData[0] as Flight).id);
   };
 
+  const noDataTextKey = React.useRef<
+    "emptyFlightsList" | "serverError" | "loadingFlightsList"
+  >();
+
+  const noDataTexts: Record<
+    "emptyFlightsList" | "serverError" | "loadingFlightsList",
+    string
+  > = {
+    loadingFlightsList: "",
+    emptyFlightsList: "Sorry, no flights available.",
+    serverError: "Cannot fetch data from the server! Please try again later.",
+  };
+
+  if (flightsListIsLoading) {
+    noDataTextKey.current = "loadingFlightsList";
+  } else {
+    noDataTextKey.current = flightsListFetchingHasFailed
+      ? "serverError"
+      : "emptyFlightsList";
+  }
+
   return (
     <>
       <DataGridWithLoadPanel
@@ -40,7 +63,7 @@ export default ({
         showBorders
         selection={{ mode: "single" }}
         onSelectionChanged={handleSelectionChange}
-        noDataText={flightsListIsLoading ? "" : "Sorry, no flights available."}
+        noDataText={noDataTextKey.current && noDataTexts[noDataTextKey.current]}
         dataIsLoading={flightsListIsLoading}
       >
         {[

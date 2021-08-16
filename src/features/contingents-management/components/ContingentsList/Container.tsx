@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { useAppSelector } from "@app/hooks";
 import {
+  hasContingentsListFetchingFailed,
   isContingentsListLoading,
   selectContingents,
 } from "@features/contingents-management/selectors";
@@ -13,6 +14,10 @@ export default (): JSX.Element => {
   const contingentsListIsLoading: boolean = useAppSelector<boolean>(
     isContingentsListLoading
   );
+  const contingentsListFetchingHasFailed: boolean = useAppSelector<boolean>(
+    hasContingentsListFetchingFailed
+  );
+
   const contingents: Contingent[] = useAppSelector<Contingent[]>(
     selectContingents,
     (previousContingents, currentContingents) => {
@@ -34,6 +39,7 @@ export default (): JSX.Element => {
     <Presentation
       contingents={contingents}
       contingentsListIsLoading={contingentsListIsLoading}
+      contingentsListFetchingHasFailed={contingentsListFetchingHasFailed}
     />
   );
 };

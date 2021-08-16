@@ -29,3 +29,12 @@ export const isFlightsListLoading = createSelector<
   (rootState) => rootState.flightsManager.fetchStatus,
   (fetchStatus): boolean => fetchStatus === FetchStatus.LOADING
 );
+
+export const hasFlightsListFetchingFailed = createSelector<
+  RootState,
+  RootState["flightsManager"]["fetchStatus"],
+  boolean
+>(
+  (rootState) => rootState.flightsManager.fetchStatus,
+  (fetchStatus): boolean => fetchStatus === FetchStatus.FAILED
+);
