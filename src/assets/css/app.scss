@@ -1,3 +1,11 @@
 @import "fonts";
 @import "tailwind";
 @import "~devextreme/dist/css/dx.material.blue.light.compact.css";
+
+.dx-datagrid-pager.dx-pager {
+  @apply bg-gray-100;
+}
+
+.dx-datagrid-headers .dx-datagrid-table .dx-row > td {
+  @apply text-sm;
+}

@@ -10,16 +10,20 @@ export default (): JSX.Element => {
   const contingentsListHeadingId = "contingentsListHeading";
 
   return (
-    <main aria-labelledby={mainHeadingId}>
-      <h1 id={mainHeadingId} className="capitalize">
+    <main aria-labelledby={mainHeadingId} className="container mx-auto mt-8">
+      <h1
+        id={mainHeadingId}
+        className="capitalize text-center mb-6 text-5xl font-medium"
+      >
         Flights list
       </h1>
 
       <Box direction="row" width="100%" height="100%">
-        <Item ratio="3">
+        <Item ratio="6">
           <FlightsList aria-controls={contingentsListSectionId} />
         </Item>
-        <Item ratio="2">
+        <Item ratio="0.5"></Item>
+        <Item ratio="5">
           <section
             id={contingentsListSectionId}
             aria-labelledby={contingentsListHeadingId}

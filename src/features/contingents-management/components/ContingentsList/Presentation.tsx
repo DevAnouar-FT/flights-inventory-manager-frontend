@@ -37,19 +37,24 @@ export default ({
         {
           dataField: "bookedSeatsCount",
           caption: "Booked Seats Count",
+          dataType: "number",
         },
         {
           dataField: "totalSeatsCount",
           caption: "Total Seats Count",
+          dataType: "number",
         },
-      ].map<React.ReactNode>(({ dataField, caption, customizeText }) => (
-        <Column
-          key={dataField}
-          dataField={dataField}
-          caption={caption}
-          customizeText={customizeText}
-        />
-      ))}
+      ].map<React.ReactNode>(
+        ({ dataField, dataType, caption, customizeText }) => (
+          <Column
+            key={dataField}
+            dataField={dataField}
+            caption={caption}
+            customizeText={customizeText}
+            dataType={dataType}
+          />
+        )
+      )}
     </DataGridWithLoadPanel>
   );
 };
