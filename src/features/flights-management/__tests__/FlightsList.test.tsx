@@ -1,16 +1,9 @@
 import * as React from "react";
-import { setupServer } from "msw/node";
-import { rest } from "msw";
 import { screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import dayjs from "dayjs";
 
-import { endpoints } from "../api";
-import type { FlightDTO } from "../types";
 import { render } from "@src/testUtils";
 import FlightsList, { DisplayedFlights } from "../components/FlightsList";
-import { Contingent } from "@features/contingents-management/types";
-import { contingentsEndpoints } from "@features/contingents-management";
 import { flights } from "@src/dummyTestData";
 
 describe("flights-management/components/FlightsList.tsx", (): void => {
